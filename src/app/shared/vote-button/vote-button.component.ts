@@ -8,6 +8,7 @@ import { AuthService } from 'src/app/auth/shared/auth.service';
 import { PostService } from '../post.service';
 import { throwError } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { VoteService } from '../vote.service';
 
 @Component({
   selector: 'app-vote-button',
@@ -25,7 +26,7 @@ export class VoteButtonComponent implements OnInit {
   isLoggedIn: boolean;
 
   constructor(
-    // private voteService: VoteService,
+    private voteService: VoteService,
     private authService: AuthService,
     private postService: PostService, private toastr: ToastrService) {
 
@@ -54,12 +55,12 @@ export class VoteButtonComponent implements OnInit {
 
   private vote() {
     this.votePayload.postId = this.post.id;
-    // this.voteService.vote(this.votePayload).subscribe(() => {
-    //   this.updateVoteDetails();
-    // }, error => {
-    //   this.toastr.error(error.error.message);
-    //   throwError(error);
-    // });
+    this.voteService.vote(this.votePayload).subscribe(() => {
+      this.updateVoteDetails();
+    }, error => {
+      this.toastr.error(error.error.message);
+      throwError(error);
+    });
   }
 
   private updateVoteDetails() {
