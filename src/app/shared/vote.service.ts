@@ -10,6 +10,6 @@ export class VoteService {
   constructor(private http: HttpClient) {}
 
   vote(votePayload: VotePayload): Observable<any> {
-    return this.http.post('http://localhost:8080/api/votes/', votePayload);
+    return this.http.post('http://springreddit-env.eba-z72vxg6q.ap-south-1.elasticbeanstalk.com/api/votes/', votePayload);
   }
 }
