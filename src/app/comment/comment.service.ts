@@ -11,20 +11,20 @@ export class CommentService {
 
   getAllCommentsForPost(postId: number): Observable<CommentPayload[]> {
     return this.httpClient.get<CommentPayload[]>(
-      'http://localhost:8080/api/comments/by-post/' + postId
+      'http://springreddit-env.eba-z72vxg6q.ap-south-1.elasticbeanstalk.com/api/comments/by-post/' + postId
     );
   }
 
   postComment(commentPayload: CommentPayload): Observable<any> {
     return this.httpClient.post<any>(
-      'http://localhost:8080/api/comments/',
+      'http://springreddit-env.eba-z72vxg6q.ap-south-1.elasticbeanstalk.com/api/comments/',
       commentPayload
     );
   }
 
   getAllCommentsByUser(name: string) {
     return this.httpClient.get<CommentPayload[]>(
-      'http://localhost:8080/api/comments/by-user/' + name
+      'http://springreddit-env.eba-z72vxg6q.ap-south-1.elasticbeanstalk.com/api/comments/by-user/' + name
     );
   }
 }
