@@ -3,16 +3,16 @@ import { HttpClient } from '@angular/common/http';
 import { PostModel } from './post-model';
 import { Observable } from 'rxjs';
 import { CreatePostPayload } from '../post/create-post/create-post-payload';
+import { Constants } from './constants';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PostService {
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getAllPosts(): Observable<Array<PostModel>> {
-    return this.http.get<Array<PostModel>>('http://springreddit-env.eba-z72vxg6q.ap-south-1.elasticbeanstalk.com/api/posts/');
+    return this.http.get<Array<PostModel>>(Constants + '/api/posts/');
   }
 
   // createPost(postPayload: CreatePostPayload): Observable<any> {
@@ -20,14 +20,17 @@ export class PostService {
   // }
 
   getPost(id: number): Observable<PostModel> {
-    return this.http.get<PostModel>('http://springreddit-env.eba-z72vxg6q.ap-south-1.elasticbeanstalk.com/api/posts/' + id);
+    return this.http.get<PostModel>(Constants + '/api/posts/' + id);
   }
 
   getAllPostsByUser(name: string): Observable<PostModel[]> {
-    return this.http.get<PostModel[]>('http://springreddit-env.eba-z72vxg6q.ap-south-1.elasticbeanstalk.com/api/posts/by-user/' + name);
+    return this.http.get<PostModel[]>(Constants + '/api/posts/by-user/' + name);
   }
 
   createPost(postPayload: CreatePostPayload): Observable<CreatePostPayload> {
-    return this.http.post<CreatePostPayload>('http://springreddit-env.eba-z72vxg6q.ap-south-1.elasticbeanstalk.com/api/posts', postPayload);
+    return this.http.post<CreatePostPayload>(
+      Constants + '/api/posts',
+      postPayload
+    );
   }
 }
