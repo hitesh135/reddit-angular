@@ -12,20 +12,20 @@ export class CommentService {
 
   getAllCommentsForPost(postId: number): Observable<CommentPayload[]> {
     return this.httpClient.get<CommentPayload[]>(
-      Constants + '/api/comments/by-post/' + postId
+      Constants.BASE_URL + '/api/comments/by-post/' + postId
     );
   }
 
   postComment(commentPayload: CommentPayload): Observable<any> {
     return this.httpClient.post<any>(
-      Constants + '/api/comments/',
+      Constants.BASE_URL + '/api/comments/',
       commentPayload
     );
   }
 
   getAllCommentsByUser(name: string) {
     return this.httpClient.get<CommentPayload[]>(
-      Constants + '/api/comments/by-user/' + name
+      Constants.BASE_URL + '/api/comments/by-user/' + name
     );
   }
 }

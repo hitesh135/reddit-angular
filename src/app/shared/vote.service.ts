@@ -11,6 +11,6 @@ export class VoteService {
   constructor(private http: HttpClient) {}
 
   vote(votePayload: VotePayload): Observable<any> {
-    return this.http.post(Constants + '/api/votes/', votePayload);
+    return this.http.post(Constants.BASE_URL + '/api/votes/', votePayload);
   }
 }

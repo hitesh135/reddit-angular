@@ -12,7 +12,7 @@ export class PostService {
   constructor(private http: HttpClient) {}
 
   getAllPosts(): Observable<Array<PostModel>> {
-    return this.http.get<Array<PostModel>>(Constants + '/api/posts/');
+    return this.http.get<Array<PostModel>>(Constants.BASE_URL + '/api/posts/');
   }
 
   // createPost(postPayload: CreatePostPayload): Observable<any> {
@@ -20,16 +20,16 @@ export class PostService {
   // }
 
   getPost(id: number): Observable<PostModel> {
-    return this.http.get<PostModel>(Constants + '/api/posts/' + id);
+    return this.http.get<PostModel>(Constants.BASE_URL + '/api/posts/' + id);
   }
 
   getAllPostsByUser(name: string): Observable<PostModel[]> {
-    return this.http.get<PostModel[]>(Constants + '/api/posts/by-user/' + name);
+    return this.http.get<PostModel[]>(Constants.BASE_URL + '/api/posts/by-user/' + name);
   }
 
   createPost(postPayload: CreatePostPayload): Observable<CreatePostPayload> {
     return this.http.post<CreatePostPayload>(
-      Constants + '/api/posts',
+      Constants.BASE_URL + '/api/posts',
       postPayload
     );
   }
